@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/CSS/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Kdam+Thmor+Pro&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Barlow:ital,wght@1,100&family=Kdam+Thmor+Pro&display=swap"
+        rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Barlow:ital,wght@1,100&family=Kdam+Thmor+Pro&family=Ubuntu:wght@300&display=swap"
+        rel="stylesheet">
+    <title>Weather App</title>
+</head>
+
+<body>
+    <div class="container">
+        <nav>
+            <span id="heading">
+                <h1>Welcome to the Weather App</h1>
+            </span>
+        </nav>
+        <div class="popular">
+            <ul class="popli">
+                {{!-- <a> --}}
+                    <li style="color: white;">Popular Cities:</li>
+                {{!-- </a> --}}
+                <a href="/bangalore" id="bangalore">
+                    <li>Bangalore</li>
+                </a>
+                <a href="/newdelhi" id="newdelhi">
+                    <li>New Delhi</li>
+                </a>
+                <a href="/mumbai" id="mumbai">
+                    <li>Mumbai</li>
+                </a>
+                <a href="/hyderabad" id="hyderabad">
+                    <li>Hyderabad</li>
+                </a>
+            </ul>
+        </div>
+        <div id="search">
+            <form action="/" method="post">
+                <input id="searchbox" type="text" name="city" placeholder="Enter City Name" required>
+                <input id="subtn" type="submit" value="Check Now">
+            </form>
+        </div>
+    </div>
+
+
+</body>
+
+</html>
