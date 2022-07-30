@@ -259,8 +259,35 @@ ul a:hover {
     }
 
 }
+@media only screen and (max-width:575px) {
+    #heading h1 {
+        font-size: 0.9rem;
+    }
 
-@media only screen and (max-width: 470px){
+    .popular {
+        display: none;
+    }
+    .suntext {
+        font-size: 0.9rem;
+    }
+    .tmtext {
+        font-size: 0.9rem;
+    }
+    
+    #tempwet {
+        font-size: 0.9rem;
+    }
+    
+    #temptext {
+        font-size: 0.9rem;
+    }
+    
+    #tempnum {
+        font-size: 0.9rem;
+    }
+   
+}
+@media only screen and (max-width: 480px){
     #heading h1 {
         font-size: 1.5rem;
     }
