@@ -11,62 +11,65 @@ app.set('view engine', 'hbs');
 app.get('/', (req, res) => {
     res.render('index')
 })
-
+// for searching cities
 app.post('/postsubmit', (req, res) => {
-    let cityo = req.body.city;
-    let url = `http://api.openweathermap.org/data/2.5/weather?q=${cityo}&appid=${apikey}&units=metric`;
+    let city_input = req.body.city;
+    let url = `http://api.openweathermap.org/data/2.5/weather?q=${city_input}&appid=${apikey}&units=metric`;
     request(url)
         .on("data", (chunk) => {
-            const jsobj = JSON.parse(chunk)
-            if (jsobj["cod"] == '404') {
+            const jsonObj = JSON.parse(chunk)
+            if (jsonObj["cod"] == '404') {      //checking for error 
                 res.render('index3')
             }
             else {
-                let tempo = jsobj["main"]["temp"];
-                let tmaxo = jsobj["main"]["temp_max"];
-                let tmino = jsobj["main"]["temp_min"];
-                var risetimeo = new Date(jsobj["sys"]["sunrise"] * 1000);
-                let risetimeoo = risetimeo.toLocaleTimeString();
-                var settimeo = new Date(jsobj["sys"]["sunset"] * 1000);
-                let settimeoo = settimeo.toLocaleTimeString();
-                let weathero = jsobj["weather"][0]["main"];
-                tempo.toString();
+                // extracting data from API
+                let temperature = jsonObj["main"]["temp"];
+                let maxTemp = jsonObj["main"]["temp_max"];
+                let minTemp = jsonObj["main"]["temp_min"];
+                var risetime = new Date(jsonObj["sys"]["sunrise"] * 1000);
+                let riseTimeString = risetime.toLocaleTimeString();
+                var setTime = new Date(jsonObj["sys"]["sunset"] * 1000);
+                let setTimeString = setTime.toLocaleTimeString();
+                let weather = jsonObj["weather"][0]["main"];
+                temperature.toString();
                 res.render('index2', {
-                    city: cityo.toLocaleUpperCase(),
-                    temp: tempo,
-                    tmax: tmaxo,
-                    tmin: tmino,
-                    risetime: risetimeoo,
-                    settime: settimeoo,
-                    weather: weathero
+                    city: city_input.toLocaleUpperCase(),
+                    temp: temperature,
+                    tmax: maxTemp,
+                    tmin: minTemp,
+                    risetime: riseTimeString,
+                    settime: setTimeString,
+                    weather: weather
                 })
             }
 
         })
 });
+// for popular cities 
 app.get('/link/:city', (req, res) => {
-    let cityo = req.params.city;
-    let url = `http://api.openweathermap.org/data/2.5/weather?q=${cityo}&appid=${apikey}&units=metric`;
+    let city_input = req.params.city;
+    let url = `http://api.openweathermap.org/data/2.5/weather?q=${city_input}&appid=${apikey}&units=metric`;
     request(url)
         .on("data", (chunk) => {
-            const jsobj = JSON.parse(chunk)
-            let tempo = jsobj["main"]["temp"];
-            let tmaxo = jsobj["main"]["temp_max"];
-            let tmino = jsobj["main"]["temp_min"];
-            var risetimeo = new Date(jsobj["sys"]["sunrise"] * 1000);
-            let risetimeoo = risetimeo.toLocaleTimeString();
-            var settimeo = new Date(jsobj["sys"]["sunset"] * 1000);
-            let settimeoo = settimeo.toLocaleTimeString();
-            let weathero = jsobj["weather"][0]["main"];
-            tempo.toString();
+            // extracting data from API
+            const jsonObj = JSON.parse(chunk)
+            let temperature = jsonObj["main"]["temp"];
+            let maxTemp = jsonObj["main"]["temp_max"];
+            let minTemp = jsonObj["main"]["temp_min"];
+            var risetime = new Date(jsonObj["sys"]["sunrise"] * 1000);
+            let riseTimeString = risetime.toLocaleTimeString();
+            var setTime = new Date(jsonObj["sys"]["sunset"] * 1000);
+            let setTimeString = setTime.toLocaleTimeString();
+            let weather = jsonObj["weather"][0]["main"];
+            temperature.toString();
             res.render('index2', {
-                city: cityo.toLocaleUpperCase(),
-                temp: tempo,
-                tmax: tmaxo,
-                tmin: tmino,
-                risetime: risetimeoo,
-                settime: settimeoo,
-                weather: weathero
+                city: city_input.toLocaleUpperCase(),
+                temp: temperature,
+                tmax: maxTemp,
+                tmin: minTemp,
+                risetime: riseTimeString,
+                settime: setTimeString,
+                weather: weather
             })
 
         })
